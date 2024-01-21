@@ -32,10 +32,8 @@ app.AddCommand(
                 Console.WriteLine($"file: {fullPath} is not excel file!");
                 return;
             }
-            //TODO single excel file convertion
-            var ExcelIOService = app.Services.GetService<ExcelIOService>();
-            var dataTable = ExcelIOService.LoadExcelDataSet(fullPath).Tables[0];
-            Excel2TeXService.PrintDataTable(dataTable);
+            var Excel2TeXService = app.Services.GetService<Excel2TeXService>();
+            Excel2TeXService?.Excel2TeX(fullPath);
 
             output ??= fullPath.Replace(AppConfig.SourceFileSuffix, AppConfig.TargetFileSuffix);
             Console.WriteLine($"src file: {src}, output file: {output}");
@@ -53,7 +51,8 @@ app.AddCommand(
             var fileList = Directory.GetFiles(fullPath)
                                     .Where(f => f.EndsWith(AppConfig.SourceFileSuffix))
                                     .ToList();
-            //TODO multiple excel file convertion
+            var Excel2TeXService = app.Services.GetService<Excel2TeXService>();
+            Excel2TeXService?.Excel2TeX(fileList);
             return;
         }
     }
