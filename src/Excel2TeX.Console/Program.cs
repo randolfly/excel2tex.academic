@@ -33,10 +33,7 @@ app.AddCommand(
                 return;
             }
             var Excel2TeXService = app.Services.GetService<Excel2TeXService>();
-            Excel2TeXService?.Excel2TeX(fullPath);
-
-            output ??= fullPath.Replace(AppConfig.SourceFileSuffix, AppConfig.TargetFileSuffix);
-            Console.WriteLine($"src file: {src}, output file: {output}");
+            Excel2TeXService?.Excel2TeXAsync(fullPath);
             return;
         }
         // directory case
@@ -52,7 +49,7 @@ app.AddCommand(
                                     .Where(f => f.EndsWith(AppConfig.SourceFileSuffix))
                                     .ToList();
             var Excel2TeXService = app.Services.GetService<Excel2TeXService>();
-            Excel2TeXService?.Excel2TeX(fileList);
+            Excel2TeXService?.Excel2TeXAsync(fileList);
             return;
         }
     }

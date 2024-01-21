@@ -1,11 +1,3 @@
-﻿namespace Excel2TeX.Util;
-
-public static class AppConfig
-{
-    public const string SourceFileSuffix = ".xlsx";
-    public const string TargetFileSuffix = ".tex";
-
-    public const string TeXSetting = """
 \usepackage[table]{xcolor}
 \usepackage{multirow}
 \usepackage{colortbl}
@@ -58,6 +50,4 @@ public static class AppConfig
 % #1 color #2 width #3 height #4 style
 \newcommand{\dfill}[4]{%
   \leaderfill{\hdp{#1}{#2}{#3}{#4}}%
-}
-""";
 }
