@@ -1,4 +1,4 @@
-﻿namespace Excel2TeX;
+﻿namespace Excel2TeX.Util;
 
 public static class AppConfig
 {

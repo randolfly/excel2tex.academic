@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using ExcelDataReader;
 
-namespace Excel2TeX;
+namespace Excel2TeX.Service;
 
 public class ExcelIOService
 {
@@ -12,7 +12,7 @@ public class ExcelIOService
             System.Text.CodePagesEncodingProvider.Instance);
     }
 
-    public DataSet LoadExcelFile(string filePath)
+    public DataSet LoadExcelDataSet(string filePath)
     {
         using var stream = File.Open(filePath,
             FileMode.Open, FileAccess.Read);

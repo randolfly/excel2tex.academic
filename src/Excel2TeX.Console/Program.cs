@@ -1,7 +1,14 @@
 ﻿using Cocona;
-using Excel2TeX;
+using Excel2TeX.Service;
+using Excel2TeX.Util;
+using Microsoft.Extensions.DependencyInjection;
 
-var app = CoconaApp.Create();
+var builder = CoconaApp.CreateBuilder();
+
+builder.Services.AddTransient<ExcelIOService>();
+builder.Services.AddTransient<Excel2TeXService>();
+
+var app = builder.Build();
 
 app.AddCommand(
     (
@@ -26,6 +33,10 @@ app.AddCommand(
                 return;
             }
             //TODO single excel file convertion
+            var ExcelIOService = app.Services.GetService<ExcelIOService>();
+            var dataTable = ExcelIOService.LoadExcelDataSet(fullPath).Tables[0];
+            Excel2TeXService.PrintDataTable(dataTable);
+
             output ??= fullPath.Replace(AppConfig.SourceFileSuffix, AppConfig.TargetFileSuffix);
             Console.WriteLine($"src file: {src}, output file: {output}");
             return;
