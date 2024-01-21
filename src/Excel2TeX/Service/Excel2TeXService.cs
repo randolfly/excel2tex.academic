@@ -133,6 +133,15 @@ public class Excel2TeXService(ExcelIOService excelIOService)
 
 }
 
+public static class StringExtension
+{
+    public static string FormatContent(this string text)
+    {
+        // format % to \%
+        return text.Replace("%", @"\%");
+    }
+}
+
 public static class StringBuilderExtension
 {
     public static void InsertLine(this StringBuilder sb, int colCount, float? lineWidth)
@@ -160,10 +169,10 @@ public static class StringBuilderExtension
 
     public static void InsertRow(this StringBuilder sb, DataRow dataRow)
     {
-        sb.AppendLine($"  \\multicolumn{{1}}{{c}}{{{dataRow[0]}}}");
+        sb.AppendLine($"  \\multicolumn{{1}}{{c}}{{{dataRow[0].ToString().FormatContent()}}}");
         for (int i = 1; i < dataRow.ItemArray.Length; i++)
         {
-            sb.AppendLine($"   & \\multicolumn{{1}}{{c}}{{{dataRow[i]}}}");
+            sb.AppendLine($"   & \\multicolumn{{1}}{{c}}{{{dataRow[i].ToString().FormatContent()}}}");
         }
         sb.AppendLine(@"  \\");
     }
