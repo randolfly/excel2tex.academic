@@ -9,6 +9,7 @@
     "**/bin": true,
     "**/obj": true,
     "**/*.csproj": true,
-    "**/LICENSE": true
+    "**/LICENSE": true,
+    "doc/.obsidian/": true
   }
 }

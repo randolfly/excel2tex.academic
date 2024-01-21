@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Excel2TeX\Excel2TeX.csproj" />
+  </ItemGroup>
+
 </Project>
